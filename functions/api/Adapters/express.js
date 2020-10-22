@@ -2,7 +2,7 @@ const  express = require('express');
 const bodyParser = require("body-parser");
 
 class Express{
-    constructor(puerto){
+    constructor(puerto ){
         this.app = express();
         this.puerto = puerto;
     }
@@ -18,4 +18,4 @@ class Express{
     DefineRoutes(){
         
     }
-}
+}module.exports = Express;

@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "aplicacion web de productos",
   "scripts": {
-    "test": "test"
+    "dev": "index.js"
   },
   "repository": {
     "type": "git",
