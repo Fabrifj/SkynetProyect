@@ -1,0 +1,21 @@
+{
+  "name": "skynetproyect",
+  "version": "1.0.0",
+  "description": "aplicacion web de productos",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fabrifj/SkynetProyect.git"
+  },
+  "author": "SkynetTeam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fabrifj/SkynetProyect/issues"
+  },
+  "homepage": "https://github.com/Fabrifj/SkynetProyect#readme",
+  "dependencies": {
+    "firebase": "^7.24.0"
+  }
+}
