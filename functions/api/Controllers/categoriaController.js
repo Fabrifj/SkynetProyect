@@ -1,8 +1,8 @@
 
 class CategoriaController{
     constructor(databaseRepository) {
-        this.CategoriaController = databaseRepository;
-        this.collectionName = "Categoria";
+        this.databaseRepository = databaseRepository;
+        this.collectionName = 'Categoria';
     }
 
     async listCategoria(response,request){
@@ -22,7 +22,7 @@ class CategoriaController{
             response.send({
                 status: 500,
                 message: exception
-            })
+            });
         }
     }
 
@@ -40,7 +40,7 @@ class CategoriaController{
             response.send({
                 status: 500,
                 message: exception
-            })
+            });
         }
     }
 
@@ -57,7 +57,7 @@ class CategoriaController{
             response.send({
                 status: 500,
                 message: exception
-            })
+            });
         }
     }
 
@@ -74,7 +74,7 @@ class CategoriaController{
             response.send({
                 status: 500,
                 message: exception
-            })
+            });
         }
     }
 
@@ -90,7 +90,7 @@ class CategoriaController{
             response.send({
                 status: 500,
                 message: exception
-            })
+            });
         }
     }
 }module.exports = CategoriaController;

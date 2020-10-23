@@ -27,7 +27,7 @@ class Express{
         let CategoriaCont = new CategoriaController(this.databaseRepository);
         
         this.app.post('cat/add', function(request, response){
-            CategoriaCont.addCategoria(request.body);
+            CategoriaCont.addCategoria(request, response );
             response.status(200).send(request.body);
         })
 
@@ -56,8 +56,7 @@ class Express{
         let ProductoCont = new ProductoController(this.databaseRepository);
         
         this.app.post('/product/add', function(request, response){
-            ProductoCont.addProducto(request.body);
-            response.status(200).send(request.body);
+            ProductoCont.addProducto(request,response);
         })
 
     //get 
@@ -66,7 +65,7 @@ class Express{
             ProductoCont.Producto(response,cursoId);
         })
         this.app.get('/product', function(request, response){    
-            ProductoCont.listProducto(response);
+            ProductoCont.listProducto(request,response);
         })
 
     //delete
