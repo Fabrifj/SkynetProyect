@@ -1,11 +1,13 @@
-class CategoriaController(){
-    constructor(){
+
+class CategoriaController{
+    constructor(databaseRepository){
+        this.databaseRepository = databaseRepository;
         this.collectionName = "Categoria";
     }
 
     listCategoria(response){
         Categoria.find({}, function (error, categoria) {
-            if (error) return response.status(404).send("Error en la petición");
+            if (error) return response.status(404).send("Error en la peticiï¿½n");
             if (!categoria) return response.status(404).send("Categoria no existe");
 
             response.status(202).send(categoria);
@@ -14,7 +16,7 @@ class CategoriaController(){
 
     Categoria(response, categoriaId){
         Categoria.findById(CategoriaId, function (error, categoria) {
-            if (error) return response.status(404).send("Error en la petición");
+            if (error) return response.status(404).send("Error en la peticiï¿½n");
             if (!categoria) return response.status(404).send("Categoria no existe");
 
             response.status(202).send(categoria);
@@ -33,11 +35,11 @@ class CategoriaController(){
 
     deleteCategoria(response, categoriaId){
         Categoria.findById(categoriaId, function (error, categoria) {
-            if (error) return response.status(404).send("Error en la petición");
+            if (error) return response.status(404).send("Error en la peticiï¿½n");
             if (!categoria) return response.status(404).send("Categoria no existe");
 
             categoria.remove(function (error) {
-                if (error) return response.status(404).send("Error en la petición");
+                if (error) return response.status(404).send("Error en la peticiï¿½n");
                 response.status(202).send("Categoria borrada");
             })
         })
@@ -45,12 +47,12 @@ class CategoriaController(){
 
     updateCategoria(response, categoriaId, update){
         Categoria.findByIdAndUpdate(categoriaId, update, function(error, categoria){
-            if(error) return response.status(404).send("Error en la petición");
+            if(error) return response.status(404).send("Error en la peticiï¿½n");
             if(!categoria) return response.status(404).send("Categoria no existe");
 
             response.status(202).send("Categoria actualizada");
         })
     }
 
-    module.exports = CategoriaController;
-}
+    
+}module.exports = CategoriaController;
