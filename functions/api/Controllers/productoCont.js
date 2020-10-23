@@ -5,7 +5,7 @@ class ProductoController{
         this.collectionName = "Producto";
     }
 
-    async listProducto(response){
+    async listProducto(response,request){
         try{
             let list;
             if(request.body.query) {

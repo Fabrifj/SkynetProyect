@@ -1,4 +1,3 @@
-import { response } from "express";
 
 class CategoriaController{
     constructor(databaseRepository) {
@@ -6,22 +5,20 @@ class CategoriaController{
         this.collectionName = "Categoria";
     }
 
-    async listCategoria() {
+    async listCategoria(response,request){
         try{
             let list;
-            if (request.body.query) {
+            if(request.body.query) {
                 list = await this.databaseRepository.listFiltered(this.collectionName, request.body.query);
             } else {
                 list = await this.databaseRepository.list(this.collectionName);
             }
-
             response.send({
                 status: 200,
-                message: 'Lista de categoria',
+                message: 'this Product list',
                 payload: list
             });
-        }
-        catch (exception) {
+        } catch(exception) {
             response.send({
                 status: 500,
                 message: exception
@@ -56,7 +53,7 @@ class CategoriaController{
                 message: 'Esta es la categoria con el id solicitado',
                 payload: categoria
             });
-        } catch () {
+        } catch (exception) {
             response.send({
                 status: 500,
                 message: exception
@@ -73,7 +70,7 @@ class CategoriaController{
                 status: 200,
                 message: 'Categoria actualizada'
             });
-        } catch () {
+        } catch (exception) {
             response.send({
                 status: 500,
                 message: exception
@@ -89,11 +86,11 @@ class CategoriaController{
                 status: 200,
                 message: 'Categoria borrada'
             });
-        } catch () {
+        } catch (exception) {
             response.send({
                 status: 500,
                 message: exception
             })
         }
     }
-}
+}module.exports = CategoriaController;

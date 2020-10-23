@@ -1,8 +1,8 @@
 const  express = require('express');
 const bodyParser = require("body-parser");
 
-const CategoriaController = require("./../Controllers/categoriaCont");
-const ProductoController = require("./../Controllers/productoCont");
+const CategoriaController = require("./../Controllers/categoriaController");
+const ProductoController = require("./../Controllers/productoController");
 
 class Express{
     constructor(puerto, db ){

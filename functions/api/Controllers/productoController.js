@@ -1,4 +1,3 @@
-import { response } from "express";
 
 class ProductoController {
     constructor(databaseRepository) {
@@ -6,22 +5,20 @@ class ProductoController {
         this.collectionName = "Producto";
     }
 
-    async listProducto() {
-        try {
+    async listProducto(response,request){
+        try{
             let list;
-            if (request.body.query) {
+            if(request.body.query) {
                 list = await this.databaseRepository.listFiltered(this.collectionName, request.body.query);
             } else {
                 list = await this.databaseRepository.list(this.collectionName);
             }
-
             response.send({
                 status: 200,
-                message: 'Lista de Producto',
+                message: 'this Product list',
                 payload: list
             });
-        }
-        catch (exception) {
+        } catch(exception) {
             response.send({
                 status: 500,
                 message: exception
@@ -56,7 +53,7 @@ class ProductoController {
                 message: 'Este es el producto con el id solicitado',
                 payload: producto
             });
-        } catch () {
+        } catch (exception) {
             response.send({
                 status: 500,
                 message: exception
@@ -73,7 +70,7 @@ class ProductoController {
                 status: 200,
                 message: 'Producto actualizado'
             });
-        } catch () {
+        } catch (exception) {
             response.send({
                 status: 500,
                 message: exception
@@ -89,11 +86,11 @@ class ProductoController {
                 status: 200,
                 message: 'Producto borrado'
             });
-        } catch () {
+        } catch (exception) {
             response.send({
                 status: 500,
                 message: exception
             })
         }
     }
-}
+}module.exports = ProductoController;
