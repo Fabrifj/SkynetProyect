@@ -20,9 +20,9 @@ class CategoriaController{
             });
         } catch(exception) {
             response.send({
-                status: 500,
+                status: 600,
                 message: exception
-            })
+            });
         }
     }
 
@@ -40,7 +40,7 @@ class CategoriaController{
             response.send({
                 status: 500,
                 message: exception
-            })
+            });
         }
     }
 
@@ -57,7 +57,7 @@ class CategoriaController{
             response.send({
                 status: 500,
                 message: exception
-            })
+            });
         }
     }
 
@@ -74,7 +74,7 @@ class CategoriaController{
             response.send({
                 status: 500,
                 message: exception
-            })
+            });
         }
     }
 
@@ -90,7 +90,7 @@ class CategoriaController{
             response.send({
                 status: 500,
                 message: exception
-            })
+            });
         }
     }
 }module.exports = CategoriaController;

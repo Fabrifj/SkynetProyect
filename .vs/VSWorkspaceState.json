@@ -3,6 +3,7 @@
     "",
     "\\functions",
     "\\functions\\api",
+    "\\functions\\api\\Adapters",
     "\\functions\\api\\Controllers"
   ],
   "SelectedNode": "\\functions\\index.js",
