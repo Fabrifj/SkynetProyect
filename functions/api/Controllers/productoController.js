@@ -1,11 +1,11 @@
 
 class ProductoController {
     constructor(databaseRepository) {
-        this.ProductoController = databaseRepository;
-        this.collectionName = "Producto";
+        this.databaseRepository = databaseRepository;
+        this.collectionName = 'Producto';
     }
 
-    async listProducto(response,request){
+    async listProducto(request,response){
         try{
             let list;
             if(request.body.query) {
@@ -17,6 +17,7 @@ class ProductoController {
                 status: 200,
                 message: 'this Product list',
                 payload: list
+                 
             });
         } catch(exception) {
             response.send({
@@ -28,17 +29,15 @@ class ProductoController {
 
     async addProducto(request, response) {
         try {
-
-            let productoDocument = request.body;
-            let reference = await this.databaseRepository.add(productoDocument, this.collectionName);
+            let agencyDocument = request.body;
+            let reference = await this.databaseRepository.add(agencyDocument, this.collectionName);
             response.send({
-                status: 200,
-                message: 'Agregado',
+                status: '200',
+                message: 'added Producto',
             });
-
-        } catch (exception) {
+        } catch(exception) {
             response.send({
-                status: 500,
+                status: '500',
                 message: exception
             });
         }
