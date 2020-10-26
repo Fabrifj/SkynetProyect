@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 
 const CategoriaController = require("./../Controllers/categoriaController");
 const ProductoController = require("./../Controllers/productoController");
+const FacturaController = require("./../Controllers/facturaController");
 
 class Express{
     constructor(puerto, db ){
@@ -22,7 +23,9 @@ class Express{
     DefineRoutes(){
         this.defineRoutesCategoria();
         this.defineRoutesProducto();
+        this.defineRoutesFactura();
     }
+
     defineRoutesCategoria(){
         let CategoriaCont = new CategoriaController(this.databaseRepository);
         
@@ -62,7 +65,7 @@ class Express{
     //get 
         this.app.get('/product/:productId', function(request, response){
             let cursoId = request.params.cursoId;
-            ProductoCont.Producto(response,cursoId);
+            ProductoCont.Producto(response, cursoId);
         })
         this.app.get('/product', function(request, response){    
             ProductoCont.listProducto(request,response);
@@ -78,6 +81,35 @@ class Express{
             let cursoId = request.params.cursoId;   
             let update = response.body
             ProductoCont.updateProducto(response,cursoId,update);
+        })
+    }
+
+    defineRoutesFactura() {
+        let FacturaCont = new FacturaController(this.databaseRepository);
+
+        this.app.post('/factura/add', function (request, response) {
+            FacturaCont.addFactura(request, response);
+        })
+
+        //get 
+        this.app.get('/factura/:FacturaId', function (request, response) {
+            let cursoId = request.params.cursoId;
+            FacturaCont.Factura(response, cursoId);
+        })
+        this.app.get('/factura', function (request, response) {
+            FacturaCont.listFactura(request, response);
+        })
+
+        //delete
+        this.app.delete('/factura/del/:facturaId', function (request, response) {
+            let cursoId = request.params.cursoId;
+            FacturaCont.deleteFactura(response, cursoId);
+        })
+        // update
+        this.app.put('/factura/up/:facturaId', function (request, response) {
+            let cursoId = request.params.cursoId;
+            let update = response.body
+            FacturaCont.updateFactura(response, cursoId, update);
         })
     }
        
