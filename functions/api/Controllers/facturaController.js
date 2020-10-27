@@ -1,57 +1,22 @@
-
-class CategoriaController{
+class FacturaController {
     constructor(databaseRepository) {
         this.databaseRepository = databaseRepository;
-        this.collectionName = 'Categoria';
+        this.collectionName = 'Factura';
     }
 
-    async listCategoria(response,request){
-        try{
+    async listFactura(request, response) {
+        try {
             let list;
-            if(request.body.query) {
+            if (request.body.query) {
                 list = await this.databaseRepository.listFiltered(this.collectionName, request.body.query);
             } else {
                 list = await this.databaseRepository.list(this.collectionName);
             }
             response.send({
                 status: 200,
-                message: 'this Product list',
+                message: 'this Factura list',
                 payload: list
-            });
-        } catch(exception) {
-            response.send({
-                status: 600,
-                message: exception
-            });
-        }
-    }
 
-    async addCategoria(request, response) {
-        try {
-
-            let catDocument = request.body;
-            let reference = await this.databaseRepository.add(catDocument, this.collectionName);
-            response.send({
-                status: 200,
-                message: 'Agregado',
-            });
-
-        } catch (exception) {
-            response.send({
-                status: 500,
-                message: exception
-            });
-        }
-    }
-
-    async getCategoria(request, response) {
-        try {
-            const id = request.params.id;
-            const categoria = await this.databaseRepository.getOne(id, this.collectionName);
-            response.send({
-                status: 200,
-                message: 'Esta es la categoria con el id solicitado',
-                payload: categoria
             });
         } catch (exception) {
             response.send({
@@ -61,14 +26,30 @@ class CategoriaController{
         }
     }
 
-    async updateCategoria(request, response) {
+    async addFactura(request, response) {
+        try {
+            let facturaDocument = request.body;
+            let reference = await this.databaseRepository.add(facturaDocument, this.collectionName);
+            response.send({
+                status: '200',
+                message: 'added Factura',
+            });
+        } catch (exception) {
+            response.send({
+                status: '500',
+                message: exception
+            });
+        }
+    }
+
+    async getFactura(request, response) {
         try {
             const id = request.params.id;
-            let catNewData = request.body;
-            const updateResponse = await this.databaseRepository.updateOne(id, this.collectionName, catNewData);
+            const factura = await this.databaseRepository.getOne(id, this.collectionName);
             response.send({
                 status: 200,
-                message: 'Categoria actualizada'
+                message: 'Esta es la factura con el id solicitado',
+                payload: factura
             });
         } catch (exception) {
             response.send({
@@ -78,13 +59,30 @@ class CategoriaController{
         }
     }
 
-    async deleteCategoria(request, response) {
+    async updateFactura(request, response) {
+        try {
+            const id = request.params.id;
+            let facturaNewData = request.body;
+            const updateResponse = await this.databaseRepository.updateOne(id, this.collectionName, facturaNewData);
+            response.send({
+                status: 200,
+                message: 'Factura actualizada'
+            });
+        } catch (exception) {
+            response.send({
+                status: 500,
+                message: exception
+            });
+        }
+    }
+
+    async deleteFactura(request, response) {
         try {
             const id = request.param.id;
-            const deleteResponse = await this.databaseRepository.deleteOne(id, this.collectionName); 
+            const deleteResponse = await this.databaseRepository.deleteOne(id, this.collectionName);
             response.send({
                 status: 200,
-                message: 'Categoria borrada'
+                message: 'Factura borrada'
             });
         } catch (exception) {
             response.send({
@@ -93,4 +91,4 @@ class CategoriaController{
             });
         }
     }
-}module.exports = CategoriaController;
+} module.exports = FacturaController;
