@@ -1,0 +1,26 @@
+
+Estos son las direcciones creadas 
+
+--------categoria	------------------	
+	-get Lista	
+	http://localhost:3007/cat
+	-get 
+	http://localhost:3007/cat/:catId
+	-post 	
+	http://localhost:3007/cat/add
+	-delete
+	http://localhost:3007/del/del/catId
+	-put
+	http://localhost:3007/cat/up/catId
+
+-------- producto	------------------	
+	-get Lista	
+	http://localhost:3007/product
+	-get 
+	http://localhost:3007/product/:productId
+	-post 	
+	http://localhost:3007/product/add
+	-delete
+	http://localhost:3007/product/del/productId
+	-put
+	http://localhost:3007/product/up/productId

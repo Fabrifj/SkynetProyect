@@ -1,4 +1,5 @@
 const  express = require('express');
+const cors = require('cors');
 const bodyParser = require("body-parser");
 
 const CategoriaController = require("./../Controllers/categoriaController");
@@ -18,6 +19,10 @@ class Express{
         console.log('la aplicacion esta escuchan el puerto  '+ this.puerto);
         //define routers
         this.DefineRoutes();
+        this.configCors();
+    }
+    configCors() {
+        this.app.use(cors({ Origin: true}));
     }
     DefineRoutes(){
         this.defineRoutesCategoria();
@@ -66,6 +71,7 @@ class Express{
         })
         this.app.get('/product', function(request, response){    
             ProductoCont.listProducto(request,response);
+            console.log(request);
         })
 
     //delete
