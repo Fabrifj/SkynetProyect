@@ -2,7 +2,6 @@
 class CategoriaController{
     constructor(databaseRepository) {
         this.databaseRepository = databaseRepository;
-        this.collectionName = 'Categoria';
     }
 
     async listCategoria(response,request){

@@ -8,15 +8,23 @@ class ProductoController {
     async listProducto(request,response){
         try{
             let list;
+            /*
             if(request.body.query) {
                 list = await this.databaseRepository.listFiltered(this.collectionName, request.body.query);
             } else {
                 list = await this.databaseRepository.list(this.collectionName);
-            }
+            }*/
+            list = await this.databaseRepository.list(this.collectionName);
+            
+            response.setHeader("Access-Control-Allow-Origin", "*");
+            response.setHeader("Access-Control-Allow-Credentials", "true");
+            response.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+            
             response.send({
                 status: 200,
                 message: 'this Product list',
-                payload: list
+                payload: list,
+                header :"Access-Control-Allow-Origin"
                  
             });
         } catch(exception) {

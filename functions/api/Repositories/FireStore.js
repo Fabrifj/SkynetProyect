@@ -6,21 +6,30 @@ class FireStore{
     }
 
     getCollection(collectionName) {
-        return this.db.collection(collectionName);
+        let coll = this.db.collection(collectionName);
+        console.log("get collection");
+        console.log(coll);
+        return coll;
     }
 
     getCollectionInstance(collectionName) {
-        return this.getCollection(collectionName).orderBy('featured', 'desc').get(); //this function needs an await when is called
+        let coll = this.getCollection(collectionName).orderBy('featured', 'desc').get(); //this function needs an await when is called
+        console.log("get collectioninstance");
+        console.log(coll);
+        return coll;
     }
 
     getCollectionInstanceFiltered(collectionName, query) {
         let collection = this.getCollection(collectionName).where(query.field, query.action, query.value);
+        console.log(collection);
         return collection.orderBy('featured', 'desc').get(); //this function needs an await when is called
     }
 
     async getCollectionList(collectionName) {
         const documents = [];
         const collectionInstance = await this.getCollectionInstance(collectionName);
+        console.log("get collectionlist");
+        console.log(collectionInstance);
         collectionInstance.forEach(doc => {
             documents.push({id: doc.id, ... doc.data()});     
         });

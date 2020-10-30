@@ -23,7 +23,25 @@ class Express{
         this.configCors();
     }
     configCors() {
-        this.app.use(cors({ Origin: true}));
+        /*
+        this.app.use(function(req, res , next) {
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            next();
+        })
+        */
+        this.app.use(cors({
+            origin: true,
+            allowedHeaders : {
+                'Access-Control-Allow-Origin': '*',
+                'Vary': 'Origin',
+                'Access-Control-Allow-Credentials' : true
+            },
+            maxAge: 1800
+            
+        }
+            ));
+        
     }
     DefineRoutes(){
         this.defineRoutesCategoria();
@@ -70,11 +88,10 @@ class Express{
     //get 
         this.app.get('/product/:productId', function(request, response){
             let cursoId = request.params.cursoId;
-            ProductoCont.Producto(response, cursoId);
+            ProductoCont.addProducto(response, cursoId);
         })
         this.app.get('/product', function(request, response){    
             ProductoCont.listProducto(request,response);
-            console.log(request);
         })
 
     //delete
@@ -89,7 +106,6 @@ class Express{
             ProductoCont.updateProducto(response,cursoId,update);
         })
     }
-
     defineRoutesFactura() {
         let FacturaCont = new FacturaController(this.databaseRepository);
 
